@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valoranto Five Planner</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="rail">
+        <div class="brand">
+          <div class="mark">V5</div>
+          <div>
+            <h1>Valoranto Five</h1>
+            <p>map comp board</p>
+          </div>
+        </div>
+
+        <section class="panel team-panel">
+          <div class="panel-title">
+            <h2>Team</h2>
+            <div class="title-actions">
+              <button class="icon-button" id="resetPlayers" title="Reset players">Reset</button>
+              <button class="collapse-button" data-collapse="team-panel" title="Collapse Team">-</button>
+            </div>
+          </div>
+          <div id="playerList" class="player-list"></div>
+        </section>
+
+        <section class="panel maps-panel">
+          <div class="panel-title">
+            <h2>Maps</h2>
+            <div class="title-actions">
+              <button class="text-button" id="poolOnly">Pool</button>
+              <button class="collapse-button" data-collapse="maps-panel" title="Collapse Maps">-</button>
+            </div>
+          </div>
+          <div id="mapList" class="map-list"></div>
+        </section>
+      </aside>
+
+      <main class="stage">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Current map</p>
+            <h2 id="currentMapTitle">Loading...</h2>
+          </div>
+          <div class="actions">
+            <button class="tool-button active" data-tool="select" title="Place agents">Place</button>
+            <button class="tool-button" data-tool="pen" title="Pen">Pen</button>
+            <button class="tool-button" data-tool="line" title="Line">Line</button>
+            <button class="tool-button" data-tool="erase" title="Erase">Erase</button>
+            <button class="text-button" id="rotateMap" title="Rotate map 90 degrees">Rotate 90deg</button>
+            <div class="zoom-controls" title="Map zoom">
+              <button class="mini-button" id="zoomOut" title="Zoom out">-</button>
+              <span id="zoomLevel">100%</span>
+              <button class="mini-button" id="zoomIn" title="Zoom in">+</button>
+            </div>
+            <button class="text-button" id="toggleSites" title="Show or hide site markers">Sites</button>
+            <label class="color-swatch" title="Ink color">
+              <input id="inkColor" type="color" value="#67e8f9" />
+            </label>
+            <button class="text-button" id="clearBoard">Clear Map</button>
+            <button class="text-button" id="exportData">Export</button>
+            <label class="text-button import-button">
+              Import
+              <input id="importData" type="file" accept="application/json" />
+            </label>
+          </div>
+        </header>
+
+        <section class="board-shell">
+          <div class="map-visual">
+            <img id="mapSplash" alt="" />
+            <div class="map-overlay">
+              <div id="mapRotator" class="map-rotator">
+                <img id="mapLayout" alt="" />
+                <div id="siteLayer" class="site-layer"></div>
+                <canvas id="drawCanvas"></canvas>
+                <div id="pinLayer" class="pin-layer"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="side">
+        <section class="panel selected-panel">
+          <div id="selectedCard" class="selected-card">
+            <div id="selectedThumb" class="selected-thumb">+</div>
+            <div>
+              <small>Selected agent</small>
+              <strong id="selectedAgent">None</strong>
+              <span id="selectedRole" class="selected-role">No role</span>
+              <span id="selectedHint">Pick an agent, then click a slot or the map.</span>
+            </div>
+            <button class="mini-button" id="clearSelected" title="Clear selected agent">x</button>
+          </div>
+        </section>
+
+        <section class="panel comp-panel">
+          <div class="panel-title">
+            <h2>Composition</h2>
+            <div class="title-actions">
+              <span id="compCount" class="count-pill">0 / 5</span>
+              <button class="mini-button" id="clearComp" title="Clear composition">Clear</button>
+              <button class="collapse-button" data-collapse="comp-panel" title="Collapse Composition">-</button>
+            </div>
+          </div>
+          <div id="compSlots" class="comp-slots"></div>
+        </section>
+
+        <section class="panel pool-panel">
+          <div class="panel-title">
+            <h2>Comfort Picks</h2>
+            <div class="title-actions">
+              <button class="mini-button" id="clearComfort" title="Clear comfort picks">Clear</button>
+              <button class="collapse-button" data-collapse="pool-panel" title="Collapse Comfort Picks">-</button>
+            </div>
+          </div>
+          <div id="comfortList" class="comfort-list"></div>
+        </section>
+
+        <section class="panel roster-panel">
+          <div class="panel-title">
+            <h2>Agents</h2>
+            <div class="title-actions">
+              <input id="agentSearch" class="search" placeholder="Search" />
+              <button class="collapse-button" data-collapse="roster-panel" title="Collapse Agents">-</button>
+            </div>
+          </div>
+          <div id="roleFilters" class="role-filters"></div>
+          <div id="agentRoster" class="agent-roster"></div>
+        </section>
+      </aside>
+    </div>
+
+    <template id="agentCardTemplate">
+      <button class="agent-card" draggable="true">
+        <img alt="" />
+        <span></span>
+        <small></small>
+      </button>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

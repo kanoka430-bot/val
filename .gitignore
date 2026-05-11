@@ -1,0 +1,5 @@
+cloudflared.exe
+*.log
+shared-state.json
+node_modules/
+.env

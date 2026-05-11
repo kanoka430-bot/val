@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: valoranto-five-planner
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
